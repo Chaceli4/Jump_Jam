@@ -6,8 +6,8 @@ public class PlayerJump : MonoBehaviour
     private Rigidbody2D _rigidbody2D;
     
     // Capsule
-    public float capsuleHeight = 0.25f;
-    public float capsuleRadius = 0.08f;
+    public float capsuleHeight = 0;
+    public float capsuleRadius = 0;
 
     // Ground Check 
     public Transform feetCollider;
@@ -15,8 +15,8 @@ public class PlayerJump : MonoBehaviour
     private bool _groundCheck;
 
     // Forces 
-    public float jumpForce = 10;
-    public float fallForce = 2;
+    public float jumpForce = 0;
+    public float fallForce = 0;
     private Vector2 _gravityVector;
     
     // Sets gravity vector and connects components 
@@ -28,12 +28,10 @@ public class PlayerJump : MonoBehaviour
     // Update is called once per frame
    private void Update() {
         // Checks if player is touching ground 
-        _groundCheck = Physics2D.OverlapCapsule(feetCollider.position, 
-            new Vector2(capsuleHeight, capsuleRadius), CapsuleDirection2D.Horizontal,
-            0, groundMask);
+        
 
         // Checks if player is trying to jump/can jump 
-        if (Input.GetKeyDown(KeyCode.Space) && _groundCheck) {
+        if (Input.GetKeyDown(KeyCode.Space)) {
             _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, jumpForce);
         }
 
